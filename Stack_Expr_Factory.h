@@ -25,6 +25,8 @@ class Stack_Expr_Command_Factory: public Expr_Command_Factory
         Stack_Expr_Command_Factory (Stack<int> & inputStack):
             stack(inputStack){} 
 
+        int returnTopOfStack(void);  
+
     private: 
        Stack <int> & stack;
 

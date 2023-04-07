@@ -1,5 +1,5 @@
 #include "Expr_Command_Factory.h"
-#include "Stack_Expr_Command_Factory.h"
+#include "Stack_Expr_Factory.h"
 #include "Commands.cpp" 
 
 
@@ -44,6 +44,11 @@ numberCommand* Stack_Expr_Command_Factory::create_numberCommand (int num){
     return returnCommand;
 }
 
+
+
+int returnTopOfStack(void) {
+    return this->stack.top();
+}
 
 
 //Stack_Expr_Command_Factory::~Stack_Expr_Command_Factory(void){

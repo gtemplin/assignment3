@@ -18,7 +18,7 @@ int returnPostfix(std::string & infixString, Stack_Expr_Command_Factory factory,
 void infix_to_postfix(std::string token, Stack<std::string> & stack, Array<std::string> & postfixArray, int & nextArrayIndex);
 
 //evaluate the array of command expressions 
-int evaluatePostfix(Array<Expr_Command*> & array);
+void evaluatePostfix(Array<Expr_Command*> & array);
 
 
 //will use this function when want to append stack/postfixArray for the infix-postfix algorithm 

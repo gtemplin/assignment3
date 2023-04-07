@@ -22,21 +22,6 @@
 
 int main(){
 
-/*
-	typedef Array<char> Char_Array;
-
-	Array <char>* array = new Array<char>();
-	array->fill('A');
-	//array->printArray();
-
-	typedef	Array_Iterator <char> Char_Array_Iterator;
-
-	for(Char_Array_Iterator iterator(*array); !iterator.is_done(); iterator.advance()){
-		std::cout<< (char)*iterator << std::endl; 
-	} //ed
-	*/
- 
-
 
 	std::string infix = "Begin";
 

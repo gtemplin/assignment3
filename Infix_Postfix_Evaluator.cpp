@@ -66,7 +66,10 @@ int returnPostfix(std::string & infixString, Stack_Expr_Command_Factory factory,
     //now take the postfix expression and create the command array 
     postfix = makeCommandArray(commandFactoryInput, factory);
     //now postfixArray holds the postfix expression commands and can be evaluated
-    result = evaluatePostfix(postfix);
+    evaluatePostfix(postfix);
+
+    result = factory.returnTopOfStack(); //after evaluating, the top of the stack will be the value of the evaluated function
+
     return result; 
 
 }//end return postfix 
@@ -235,7 +238,11 @@ std::string whichCommand(std::string token) {
 
 
 //will evaluate the command array 
-int evaluatePostfix(Array<Expr_Command*>& array){
+void evaluatePostfix(Array<Expr_Command*>& array){
+    //iterate over the array and execute
+    for (postfixArray iterator(Expr_Command*); !iterator.is_done(); iterator.advance()) {
+        iterator->execute();
+    }
 
 	return 0;
 }//end evaluate postfix 
