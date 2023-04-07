@@ -6,7 +6,7 @@
 #include "Array.h"
 #include "Stack.h"
 #include "Expr_Command_Factory.h"
-#include "Stack_Expr_Command_Factory.h"
+#include "Stack_Expr_Factory.h"
 #include "Commands.cpp"
 
 
@@ -41,18 +41,18 @@ std::string topOfStackIfNotEmpty(Stack<std::string> & stack);
 bool higherOrEqualPrecedence(std::string token, std::string testPrecedence);
 
 
+//tells us what command should be created  
+std::string whichCommand(std::string token); 
+
+
 
 
 //////////////////////////////////////////////////////////////////////////
 
 
 
-
-
-
-
 //returns the command array 
-Array<Expr_Command*> makeCommandArray(Array<std::string> & postfixArray);
+Array<Expr_Command*> makeCommandArray(Array<std::string>& postfixArray, Stack_Expr_Command_Factory factory);
 
 
 //This function assists with setting the stack and postfix array if the token is an operator

@@ -64,7 +64,7 @@ int returnPostfix(std::string & infixString, Stack_Expr_Command_Factory factory,
     std::cout<<"\nComplete postfix expression: ";
     commandFactoryInput.printArray();    
     //now take the postfix expression and create the command array 
-    postfix = makeCommandArray(commandFactoryInput);
+    postfix = makeCommandArray(commandFactoryInput, factory);
     //now postfixArray holds the postfix expression commands and can be evaluated
     result = evaluatePostfix(postfix);
     return result; 
@@ -183,13 +183,60 @@ bool higherOrEqualPrecedence(std::string token, std::string test){
     The following functions will be used to make the commands 
     and to evaulate the postfix command array, giving an actual value 
 */
-Array<Expr_Command*> makeCommandArray(Array<std::string> & postfixArray){
+Array<Expr_Command*> makeCommandArray(Array<std::string>& postfixArray, Stack_Expr_Command_Factory factory){ 
 	Array<Expr_Command*> expr;
+    int nextArrayIndex = 0;
+    std::string currentToken;
+    std::string commandIdentifier;
+    for (postfixArray iterator(std::string); !iterator.is_done(); iterator.advance()) {
+        currentToken = iterator[nextArrayIndex];
+        commandIdentifier = whichCommand(currentToken); //function to create the command 
+
+        if (commandIdentifier == "Add")
+            expr.set(nextArrayIndex, factory.create_addCommand());
+        else if (commandIdentifier == "Subtract")
+            expr.set(nextArrayIndex, factory.create_subtractCommand());
+        else if (commandIdentifier == "Multiply")
+            expr.set(nextArrayIndex, factory.create_multiplyCommand());
+        else if (commandIdentifier == "Divide")
+            expr.set(nextArrayIndex, factory.create_divideCommand());
+        else if (commandIdentifier == "Modulo")
+            expr.set(nextArrayIndex, factory.create_moduloCommand());
+        else if (commandIdentifier == "Number")
+            expr.set(nextArrayIndex, factory.create_numberCommand());
+        else
+            std::cout<<"\nError"
+
+        ++nextArrayIndex; 
+    }//end for loop
+   
 	return expr; 
-}
+}//end make command array
+
+
+
+std::string whichCommand(std::string token) {
+    if (token == "+")
+        return "Add";
+    else if (token == "-")
+        return "Subtract";
+    else if (token == "*")
+        return "Multiply";
+    else if (token == "/")
+        return "Divide";
+    else if (token == "%")
+        return "Subtract";
+    else if (isNumber(token) == true)
+        return "Number";
+    else
+        std::cout << "\nError: input token is not valid";
+}//end which command 
+    
+
 
 //will evaluate the command array 
-int evaluatePostfix(Array<Expr_Command*> & array){
+int evaluatePostfix(Array<Expr_Command*>& array){
+
 	return 0;
 }//end evaluate postfix 
 
